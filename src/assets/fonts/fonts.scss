@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'TT Firs Neue';
+  src: local('TT Firs Neue Medium'), local('./TTFirsNeue/TTFirsNeue-Medium'),
+        url('./TTFirsNeue/TTFirsNeue-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue';
+  src: local('TT Firs Neue Bold'), local('./TTFirsNeue/TTFirsNeue-Bold'),
+  url('./TTFirsNeue/TTFirsNeue-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue';
+  src: local('TT Firs Neue Regular'), local('./TTFirsNeue/TTFirsNeue-Regular'),
+  url('./TTFirsNeue/TTFirsNeue-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

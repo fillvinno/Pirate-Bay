@@ -1,0 +1,48 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin border {
+  border: 2px solid $dark-purplish-pink;
+  border-radius: 20px;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin beige-hover {
+  &:hover {
+    background-color: darken($beige, 3%);
+  }
+}
+
+@mixin btn {
+  @include flex-center;
+  color: $beige;
+  background-color: $brown;
+  font-weight: 500;
+  font-size: 26px;
+  border: none;
+  border-radius: 16px;
+  outline: none;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    background-color: darken($brown, 3%);
+  }
+}
+
+@mixin error {
+  max-width: 100%;
+  color: $error-text-color;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

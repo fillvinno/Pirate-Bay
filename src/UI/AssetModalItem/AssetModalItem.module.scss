@@ -1,0 +1,20 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 364px;
+  padding: 31px 16px;
+  border: 2px solid $dark-purplish-pink;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: $transition;
+
+  @include beige-hover;
+
+  .symbol {
+    font-size: 28px;
+    font-weight: 500;
+  }
+}

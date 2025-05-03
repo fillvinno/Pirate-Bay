@@ -1,0 +1,62 @@
+@import "../../styles/variables";
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $brown;
+  border: none;
+  border-radius: 10px;
+  font-family: 'TT Firs Neue', sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  color: $beige;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.connected {
+    background-color: darken($brown, 5%);
+    font-size: 20px;
+  }
+}
+
+.accountInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+
+  .arrowIcon {
+    @media (max-width: 576px) {
+      display: none;
+    }
+  }
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.address {
+  overflow: hidden;
+  white-space: nowrap;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}

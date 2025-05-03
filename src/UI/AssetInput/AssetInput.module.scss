@@ -1,0 +1,20 @@
+.wrap {
+  background-color: #F1DEB9;
+  height: 84px;
+  border-radius: 10px;
+  padding: 20px 16px;
+
+  form {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 32px;
+    font-weight: 500;
+    width: 50%;
+  }
+}

@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 31px 16px;
+  @include border;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 500;
+}

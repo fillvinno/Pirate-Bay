@@ -1,0 +1,10 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .heading {
+    font-size: 22px;
+    font-weight: bold;
+  }
+}

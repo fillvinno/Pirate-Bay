@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 500px;
+  padding: 32px 24px;
+  border-radius: 40px;
+  border: 4px solid $dark-purplish-pink;
+  background-color: $beige;
+  align-self: flex-start;
+
+  .fromAsset {
+    @include flex-column;
+    gap: 12px;
+
+    .error {
+      max-width: 100%;
+      height: 26px;
+      color: $error-text-color;
+      font-size: 22px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  .approveBtn, .swapBtn {
+    height: 71px;
+    border-radius: 16px;
+    @include btn;
+
+    &[disabled] {
+      opacity: .6;
+      cursor: default;
+    }
+  }
+}

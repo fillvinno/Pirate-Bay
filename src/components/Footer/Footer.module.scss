@@ -1,0 +1,19 @@
+@import "../../styles/variables";
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 34px;
+  padding-bottom: 32px;
+  
+  .arbitrum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $beige;
+    padding: 10px;
+    border: 2px solid $brown;
+    border-radius: 10px;
+  }
+}

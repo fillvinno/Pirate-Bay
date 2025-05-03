@@ -1,0 +1,53 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.wrap {
+  @include flex-column;
+  align-items: center;
+  gap: 32px;
+  background-color: $beige;
+  width: 500px;
+  padding: 32px 24px;
+  border: 4px solid $dark-purplish-pink;
+  border-radius: 40px;
+
+  .heading {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .statusInfoImg {
+    width: 250px;
+  }
+
+  .info {
+    @include flex-column;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    .ammount {
+      display: flex;
+      gap: 10px;
+      font-size: 32px;
+      font-weight: 500;
+    }
+  }
+  
+  .error {
+    @include error;
+    font-size: 28px;
+    height: 32px;
+  }
+
+  .closeBtn {
+    @include btn;
+    padding: 20px 0;
+    width: 100%;
+  }
+}
