@@ -4,17 +4,17 @@ import {useQuery} from "@tanstack/react-query";
 
 export const useSwapQuote = (params: TGetSwapQuote | null) => {
   return useQuery({
-    queryKey: ['swapQuote', params?.fromToken, params?.toToken, params?.fromAmount],
+    queryKey: ['swapQuote', params?.fromAmount, params?.fromToken, params?.toToken],
     queryFn: async () => {
-      if (!params) throw new Error("Missing params");
-      return getSwapQuote(params);
+      if (!params) throw new Error("Missing params")
+
+      return await getSwapQuote(params)
     },
     enabled: !!params,
     staleTime: 30000,
-    retry: 1,
-    retryDelay: 2000,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    refetchOnMount: false
+    retry: 2,
+    retryDelay: 1000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false
   });
 };

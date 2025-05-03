@@ -37,12 +37,11 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
     setAssetQuote,
     setAssetError,
     setIsQuoteLoading,
-    assetError,
-    assetQuote
+    assetError
   } = useAssetsStore()
 
   const assetValue = watch('assetAmount') || ''
-  const [debouncedAmount] = useDebounce(assetValue, 500);
+  const [debouncedAmount] = useDebounce(assetValue, 1000);
 
   const {address, isConnected} = useAccount()
 
@@ -86,16 +85,9 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
     }
   }, [debouncedAmount, fromSelectedAsset, toSelectedAsset, address, shouldFetchQuote])
 
-
-  // console.log('Sending to Squid:', {
-  //   quoteParams,
-  //   fromAmount: fromSelectedAsset && toWei(debouncedAmount, fromSelectedAsset!.decimals),
-  // });
-
   const { data: quote, isLoading, error } = useSwapQuote(quoteParams)
 
 
-  // console.log('readable ammount', transferedAsset)
 
   useEffect(() => {
     if (isLoading) setIsQuoteLoading(true)

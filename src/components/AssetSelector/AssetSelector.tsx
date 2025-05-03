@@ -5,32 +5,31 @@ import {TransferDirection} from "../../models/TransferDirection.ts";
 import AssetInput from "../../UI/AssetInput/AssetInput.tsx";
 import {Asset} from "../../models/Asset.ts";
 import {useAssetsStore} from "../../store/assetsStore.ts";
-import {RouteResponse} from "@0xsquid/squid-types";
 
 type Props = {
   headingText: string
 }
 
-const renderAssetInputOrDropdown = (direction: TransferDirection, fromToken: Asset | null, toToken: Asset | null, quote: RouteResponse) => {
+const renderAssetInputOrDropdown = (direction: TransferDirection, fromToken: Asset | null, toToken: Asset | null) => {
   if (direction === 'from') {
     return fromToken
-      ? <AssetInput direction={direction} selectedAsset={fromToken} quote={quote}/>
+      ? <AssetInput direction={direction} selectedAsset={fromToken}/>
       : <AssetSelectorDropdown direction={direction}/>
   }
   if (direction === 'to') {
     return toToken
-      ? <AssetInput direction={direction} selectedAsset={toToken} quote={quote}/>
+      ? <AssetInput direction={direction} selectedAsset={toToken}/>
       : <AssetSelectorDropdown direction={direction}/>
   }
 }
 
 const AssetSelector: FC<Props> = ({headingText}) => {
-  const {fromSelectedAsset, toSelectedAsset, assetQuote } = useAssetsStore()
+  const {fromSelectedAsset, toSelectedAsset } = useAssetsStore()
 
   return (
     <div className={styles.wrap}>
       <h2 className={styles.heading}>{headingText}</h2>
-      {renderAssetInputOrDropdown(headingText.toLowerCase() as TransferDirection, fromSelectedAsset, toSelectedAsset, assetQuote)}
+      {renderAssetInputOrDropdown(headingText.toLowerCase() as TransferDirection, fromSelectedAsset, toSelectedAsset)}
     </div>
   );
 };

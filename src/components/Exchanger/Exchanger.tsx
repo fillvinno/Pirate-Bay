@@ -38,7 +38,9 @@ const Exchanger = () => {
   const spenderAddress = useMemo(() => {
     return assetQuote?.route?.transactionRequest?.target || null;
   }, [assetQuote]);
+
   console.log('target ====>', assetQuote?.route?.transactionRequest?.target)
+
   const isNativeToken = fromSelectedAsset?.address === '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 
   const { data: allowance, refetch: refetchAllowance } = useAllowance(
@@ -48,25 +50,25 @@ const Exchanger = () => {
     address as Address | undefined,
     spenderAddress || undefined,
     !!assetQuote && !isNativeToken && !!spenderAddress
-  );
+  )
 
   const approveMutation = useApprove()
   const swapMutation = useExecuteSwap()
 
   useEffect(() => {
     if (!fromSelectedAsset || !transferedAsset || isNativeToken) {
-      setNeedsApproval(false);
-      return;
+      setNeedsApproval(false)
+      return
     }
 
-    const amount = BigInt(toWei(transferedAsset, fromSelectedAsset.decimals));
-    setNeedsApproval(!allowance || allowance < amount);
-  }, [allowance, fromSelectedAsset, transferedAsset, isNativeToken]);
+    const amount = BigInt(toWei(transferedAsset, fromSelectedAsset.decimals))
+    setNeedsApproval(!allowance || allowance < amount)
+  }, [allowance, fromSelectedAsset, transferedAsset, isNativeToken])
 
   // Обработчик для approve
   const handleApprove = async () => {
     console.log('inside approve handle ---- ')
-    if (!fromSelectedAsset || !spenderAddress || !transferedAsset) return;
+    if (!fromSelectedAsset || !spenderAddress || !transferedAsset) return
 
     try {
       const amount = BigInt(toWei(transferedAsset, fromSelectedAsset.decimals))
