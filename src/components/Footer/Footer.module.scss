@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 34px;
+  padding: 0 34px 34px 34px;
 
   .arbitrum {
     @include flex-center;
