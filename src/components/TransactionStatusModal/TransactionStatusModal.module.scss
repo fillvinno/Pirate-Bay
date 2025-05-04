@@ -19,6 +19,11 @@
 
   .statusInfoImg {
     width: 250px;
+
+    @media (max-width: 576px) {
+      margin: 36px 0;
+      width: 70%;
+    }
   }
 
   .info {
@@ -42,12 +47,15 @@
   .error {
     @include error;
     font-size: 28px;
-    height: 32px;
   }
 
   .closeBtn {
     @include btn;
     padding: 20px 0;
     width: 100%;
+  }
+  
+  @media (max-width: 576px) {
+    width: 85vw;
   }
 }

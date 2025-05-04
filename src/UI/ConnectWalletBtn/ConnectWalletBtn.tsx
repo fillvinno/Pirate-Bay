@@ -11,29 +11,27 @@ const ConnectWalletBtn = () => {
     <ConnectButton.Custom>
       {({ account, openConnectModal }) => {
         return (
-          <div className={styles.container}>
-            <button
-              onClick={account ? openAccountModal : openConnectModal}
-              className={`${styles.wrap} ${account ? styles.connected : ''}`}
-              type="button"
-            >
-              {account ? (
-                <div className={styles.accountInfo}>
-                  <div className={styles.avatar}>
-                    {account.ensAvatar || <DefaultWalletIcon />}
-                  </div>
-                  <span className={styles.address}>
-                    {account.displayName}
-                  </span>
-                  <div className={styles.arrowIcon}>
-                    <ArrowBtn height='16px'/>
-                  </div>
+          <button
+            onClick={account ? openAccountModal : openConnectModal}
+            className={`${styles.wrap} ${account ? styles.connected : ''}`}
+            type="button"
+          >
+            {account ? (
+              <div className={styles.accountInfo}>
+                <div className={styles.avatar}>
+                  {account.ensAvatar || <DefaultWalletIcon />}
                 </div>
-              ) : (
-                'Connect Wallet'
-              )}
-            </button>
-          </div>
+                <span className={styles.address}>
+                  {account.displayName}
+                </span>
+                <div className={styles.arrowIcon}>
+                  <ArrowBtn height='16px'/>
+                </div>
+              </div>
+            ) : (
+              'Connect Wallet'
+            )}
+          </button>
         );
       }}
     </ConnectButton.Custom>

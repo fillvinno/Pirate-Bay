@@ -1,12 +1,7 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  backdrop-filter: blur(8px);
-  z-index: 10000;
-}
+
 
 .wrap {
   @include flex-column;
@@ -31,5 +26,9 @@
     padding: 20px 0;
     cursor: pointer;
     @include flex-center;
+  }
+
+  @media (max-width: 576px) {
+    width: 75vw;
   }
 }

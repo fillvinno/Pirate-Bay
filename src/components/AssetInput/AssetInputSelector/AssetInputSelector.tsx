@@ -28,7 +28,9 @@ const AssetInputSelector: FC<Props> = ({asset, direction}) => {
     <div className={styles.wrap} onClick={openModal}>
       <span className={styles.symbol}>{asset.symbol}</span>
       <div className={styles.icon}>{asset.icon}</div>
-      <Arrow width='12px'/>
+      <div className={styles.arrow}>
+        <Arrow width='12px'/>
+      </div>
       <SelectAssetModal
         closeModal={closeModal}
         modalIsOpen={modalIsOpen}

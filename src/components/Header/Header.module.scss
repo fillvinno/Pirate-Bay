@@ -1,14 +1,25 @@
+@import '../../styles/variables';
+
 .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 32px 0;
-
+  padding: 32px $header-paddings-x;
 
   @media (min-width: 768px) and (max-width: 1023px) {
     margin-bottom: 75px;
   }
+
   @media (max-width: 767px) {
     margin-bottom: 100px;
+  }
+
+  @media (max-width: 576px) {
+    height: 60px;
+    box-sizing: content-box;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 0;
   }
 }

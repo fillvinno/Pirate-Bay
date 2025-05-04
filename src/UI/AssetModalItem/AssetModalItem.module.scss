@@ -17,4 +17,8 @@
     font-size: 28px;
     font-weight: 500;
   }
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 }

@@ -1,8 +1,8 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .wrap {
-  display: flex;
-  align-items: center;
+  @include flex-center;
   gap: 16px;
   height: 96px;
   padding: 16px;
@@ -21,8 +21,13 @@
     height: 64px;
 
     @media (max-width: 767px) {
-      height: 48px;
       width: 48px;
+      height: 48px;
+    }
+
+    @media (max-width: 576px) {
+      width: 32px;
+      height: 32px;
     }
   }
 
@@ -31,5 +36,18 @@
     gap: 12px;
     font-size: 32px;
     height: 72px;
+  }
+
+  @media (max-width: 576px) {
+    width: 40%;
+    min-width: 182px;
+    height: 100%;
+    border: 3px solid $logo-font-color;
+  }
+
+  @media (max-width: 544px) {
+    height: 100%;
+    border: 2px solid $logo-font-color;
+    font-size: 24px;
   }
 }

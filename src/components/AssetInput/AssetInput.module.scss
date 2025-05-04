@@ -1,12 +1,18 @@
+@import "../../styles/mixins";
+
 .wrap {
   background-color: #F1DEB9;
-  height: 84px;
   border-radius: 10px;
   padding: 20px 16px;
 
   form {
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      gap: 16px;
+    }
   }
 
   .input {
@@ -16,5 +22,17 @@
     font-size: 32px;
     font-weight: 500;
     width: 50%;
+
+    @media (max-width: 576px) {
+      width: 40%;
+    }
+
+    @media (max-width: 400px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 12px 16px;
   }
 }

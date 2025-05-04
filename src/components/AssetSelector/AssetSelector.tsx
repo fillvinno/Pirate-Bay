@@ -2,9 +2,9 @@ import styles from './AssetSelector.module.scss'
 import {FC} from "react";
 import AssetSelectorDropdown from "../../UI/AssetSelectorDropdown/AssetSelectorDropdown.tsx";
 import {TransferDirection} from "../../models/TransferDirection.ts";
-import AssetInput from "../../UI/AssetInput/AssetInput.tsx";
 import {Asset} from "../../models/Asset.ts";
 import {useAssetsStore} from "../../store/assetsStore.ts";
+import AssetInput from "../AssetInput/AssetInput.tsx";
 
 type Props = {
   headingText: string

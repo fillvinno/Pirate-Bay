@@ -85,7 +85,7 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
     }
   }, [debouncedAmount, fromSelectedAsset, toSelectedAsset, address, shouldFetchQuote])
 
-  const { data: quote, isLoading, error } = useSwapQuote(quoteParams)
+  const { data: quote, isLoading } = useSwapQuote(quoteParams)
 
 
 

@@ -9,4 +9,8 @@
   cursor: pointer;
   font-size: 22px;
   font-weight: 500;
+
+  @media (max-width:480px) {
+    padding: 18px;
+  }
 }

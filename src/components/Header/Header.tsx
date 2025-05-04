@@ -4,10 +4,10 @@ import ConnectWalletBtn from "../../UI/ConnectWalletBtn/ConnectWalletBtn.tsx";
 
 const Header = () => {
   return (
-    <div className={styles.wrap}>
+    <header className={styles.wrap}>
       <Logo/>
       <ConnectWalletBtn/>
-    </div>
+    </header>
   );
 };
 
