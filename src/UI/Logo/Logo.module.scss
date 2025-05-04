@@ -50,4 +50,13 @@
     border: 2px solid $logo-font-color;
     font-size: 24px;
   }
+
+  @media (max-width: 520px) {
+    min-width: 20%;
+    height: 100%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 }
