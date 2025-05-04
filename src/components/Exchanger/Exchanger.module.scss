@@ -12,12 +12,6 @@
   background-color: $beige;
   align-self: flex-start;
 
-  @media (max-width:480px) {
-    align-self: center;
-    width: 100%;
-    padding: 36px 24px;
-  }
-
   .fromAsset {
     @include flex-column;
     gap: 12px;
@@ -44,9 +38,22 @@
       opacity: .6;
       cursor: default;
     }
+
+    @media (max-width: 576px) {
+      margin-top: 18px;
+      font-size: 18px;
+      height: 60px;
+    }
   }
-  
+
   @media (max-width: 767px) {
     width: 70%;
+  }
+  @media (max-width:576px) {
+    align-self: center;
+    width: 80%;
+    height: 65%;
+    padding: 36px 24px;
+    gap: 12px;
   }
 }

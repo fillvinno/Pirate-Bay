@@ -10,7 +10,7 @@
     justify-content: space-between;
 
     @media (max-width: 576px) {
-      flex-direction: column;
+      //flex-direction: column;
       gap: 16px;
     }
   }
@@ -25,6 +25,10 @@
 
     @media (max-width: 576px) {
       width: 100%;
+      font-size: 22px;
+    }
+    @media (max-width: 320px) {
+      font-size: 18px;
     }
   }
 

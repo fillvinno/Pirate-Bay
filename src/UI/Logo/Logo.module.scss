@@ -29,6 +29,14 @@
       width: 32px;
       height: 32px;
     }
+
+    @media (max-width: 420px) {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      width: 62px;
+      height: 62px;
+    }
   }
 
   @media (max-width: 767px) {
@@ -39,24 +47,26 @@
   }
 
   @media (max-width: 576px) {
-    width: 40%;
     min-width: 182px;
     height: 100%;
     border: 3px solid $logo-font-color;
+    padding: 8px;
   }
 
   @media (max-width: 544px) {
-    height: 100%;
     border: 2px solid $logo-font-color;
     font-size: 24px;
   }
 
   @media (max-width: 520px) {
     min-width: 20%;
-    height: 100%;
   }
 
   @media (max-width: 480px) {
     font-size: 18px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 28px;
   }
 }

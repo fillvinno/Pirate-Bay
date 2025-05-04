@@ -11,15 +11,11 @@
   }
 
   @media (max-width: 767px) {
-    margin-bottom: 100px;
+    margin-bottom: 0;
   }
 
   @media (max-width: 576px) {
     height: 60px;
     box-sizing: content-box;
-  }
-
-  @media (max-width: 480px) {
-    margin-bottom: 0;
   }
 }

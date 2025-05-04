@@ -1,8 +1,10 @@
 import {Squid} from "@0xsquid/sdk";
 import {TGetSwapQuote} from "../models/GetSwapQuote.ts";
 import {Address, erc20Abi} from "viem";
-import {readContract, writeContract} from "@wagmi/core";
+import {getAccount, readContract, writeContract} from "@wagmi/core";
 import {config} from "./wagmiConfig.ts";
+import {toWei} from "../utils/toWei.ts";
+import {DEFAULT_ASSETS} from "../utils/consts.tsx";
 
 
 let squidInstance: Squid | null = null;
@@ -19,9 +21,24 @@ export const getSDK = async () => {
 }
 
 export const getSwapQuote = async (params: TGetSwapQuote) => {
+  const { address } = getAccount(config);
+// я уснул тут 
+  const defaultParams = {
+    fromChain: '42161',
+    fromToken: DEFAULT_ASSETS[2].address,
+    fromAmount: toWei('1', DEFAULT_ASSETS[2].decimals).toString(),
+    toChain: '42161',
+    toToken: DEFAULT_ASSETS[0].address,
+    fromAddress: address,
+    toAddress: address,
+    slippage: 1.0,
+    enableForecall: true
+  }
+
   try {
-    const squidInstance = await getSDK();
-    const result = await squidInstance.getRoute(params);
+    const squidInstance = await getSDK()
+
+    const result = await squidInstance.getRoute(params ? params : defaultParams)
 
     console.log('Squid quote response:', result);
 

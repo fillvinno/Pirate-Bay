@@ -21,14 +21,18 @@
     font-size: 36px;
     font-weight: bold;
     color: #000;
+
+    @media (max-width: 576px) {
+      font-size: 32px;
+    }
   }
 
   .statusInfoImg {
     width: 250px;
 
     @media (max-width: 576px) {
-      margin: 36px 0;
-      width: 70%;
+      margin: 24px 0;
+      width: 50%;
     }
   }
 
@@ -53,15 +57,30 @@
   .error {
     @include error;
     font-size: 28px;
+
+    @media (max-width: 576px) {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
   }
 
   .closeBtn {
     @include btn;
     padding: 20px 0;
     width: 100%;
+
+    @media (max-width: 576px) {
+      padding: 12px 0;
+    }
   }
-  
+
+
+  @media (max-width: 768px) {
+    width: 60vw;
+  }
   @media (max-width: 576px) {
-    width: 85vw;
+    width: 70vw;
+    gap: 16px;
+    padding: 52px 32px;
   }
 }
