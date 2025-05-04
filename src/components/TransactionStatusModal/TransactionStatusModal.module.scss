@@ -1,6 +1,12 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
+.transactionModalOverlay {
+  background-color: transparent;
+  inset: 0;
+  position: fixed;
+}
+
 .wrap {
   @include flex-column;
   align-items: center;

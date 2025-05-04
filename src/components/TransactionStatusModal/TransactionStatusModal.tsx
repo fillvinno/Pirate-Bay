@@ -21,6 +21,7 @@ const TransactionStatusModal: FC<Props> = ({closeModal, modalIsOpen}) => {
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       style={customStyles}
+      overlayClassName={styles.transactionModalOverlay}
     >
       <div className={styles.wrap} style={transaction?.isSuccess ? {} : {backgroundColor: '#FED2CD'}}>
         <h2 className={styles.heading}>{transaction?.isSuccess ? 'Success!' : 'Failed!'}</h2>

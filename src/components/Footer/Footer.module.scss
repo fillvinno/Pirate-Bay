@@ -1,4 +1,5 @@
 @import "../../styles/variables";
+@import "../../styles/mixins";
 
 .wrap {
   display: flex;
@@ -8,12 +9,16 @@
   padding-bottom: 32px;
   
   .arbitrum {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
     background-color: $beige;
-    padding: 10px;
+    padding: 20px;
     border: 2px solid $brown;
     border-radius: 10px;
+
+    @media (max-width: 480px) {
+      height: 60px;
+      width: 60px;
+      padding: 6px;
+    }
   }
 }
