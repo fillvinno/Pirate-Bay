@@ -20,7 +20,6 @@ const SelectAssetModal: FC<Props> = ({closeModal, modalIsOpen}) => {
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      shouldCloseOnOverlayClick={true}
       style={customStyles as Styles}
     >
       <div className={styles.wrap}>

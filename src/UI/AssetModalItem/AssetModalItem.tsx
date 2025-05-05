@@ -33,7 +33,10 @@ const AssetModalItem: FC<Props> = ({asset, closeModal}) => {
   return (
     <div
       className={styles.wrap}
-      onClick={selectAsset}
+      onClick={(e) => {
+        e.stopPropagation()
+        selectAsset()
+      }}
     >
       <span className={styles.symbol}>{asset.symbol}</span>
       {asset.icon}

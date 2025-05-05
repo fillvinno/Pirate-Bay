@@ -18,11 +18,12 @@ const AssetSelectorDropdown: FC<Props> = ({direction}) => {
     e.stopPropagation()
     setTransferDirection(direction)
     setIsOpen(true)
-  }, [direction, setTransferDirection])
+}, [direction, setTransferDirection])
 
   const closeModal = useCallback(() => {
+    console.log('close')
     setIsOpen(false)
-  }, [])
+}, [])
 
   return (
     <div className={styles.wrap} onClick={openModal}>

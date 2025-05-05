@@ -100,7 +100,7 @@ const Exchanger = () => {
     }
 
     try {
-      const squid = await getSDK();
+      const squid = await getSDK()
 
       // Адаптируем walletClient под signer, ожидаемый SDK
       const signer = {
@@ -108,17 +108,17 @@ const Exchanger = () => {
           const hash = await walletClient.sendTransaction({
             account: walletClient.account.address,
             ...tx
-          });
-          return { hash };
+          })
+          return { hash }
         },
         signMessage: async (message: Uint8Array | string) => {
           return walletClient.signMessage({
             account: walletClient.account.address,
             message: typeof message === 'string' ? { raw: message } : message
-          });
+          })
         },
         getAddress: async () => walletClient.account.address
-      };
+      }
 
       const result = await squid.executeRoute({
         route: assetQuote.route,
