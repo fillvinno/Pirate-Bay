@@ -1,5 +1,5 @@
 import styles from './TransactionStatusModal.module.scss'
-import Modal from "react-modal";
+import Modal, {Styles} from "react-modal";
 import {FC} from "react";
 import {customStyles} from "../../utils/ReactModalStyles.ts";
 import successImg from '../../assets/success-icon.png';
@@ -20,7 +20,7 @@ const TransactionStatusModal: FC<Props> = ({closeModal, modalIsOpen}) => {
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      style={customStyles}
+      style={customStyles as Styles}
       overlayClassName={styles.transactionModalOverlay}
     >
       <div className={styles.wrap} style={transaction?.isSuccess ? {} : {backgroundColor: '#FED2CD'}}>

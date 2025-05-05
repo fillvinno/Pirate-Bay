@@ -1,5 +1,5 @@
 import styles from './SelectAssetModal.module.scss';
-import Modal from "react-modal";
+import Modal, {Styles} from "react-modal";
 import {FC} from "react";
 import {useAssetsStore} from "../../store/assetsStore.ts";
 import AssetModalItem from "../../UI/AssetModalItem/AssetModalItem.tsx";
@@ -11,7 +11,7 @@ type Props = {
   closeModal: () => void
 }
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 const SelectAssetModal: FC<Props> = ({closeModal, modalIsOpen}) => {
   const {assets} = useAssetsStore()
@@ -20,10 +20,10 @@ const SelectAssetModal: FC<Props> = ({closeModal, modalIsOpen}) => {
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      style={customStyles}
-      overlayClassName={styles.overlay}
+      shouldCloseOnOverlayClick={true}
+      style={customStyles as Styles}
     >
-      <div className={styles.wrap} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.wrap}>
         <div className={styles.assets}>
           {assets.map((asset) => <AssetModalItem asset={asset} key={asset.address} closeModal={closeModal}/>) }
         </div>
