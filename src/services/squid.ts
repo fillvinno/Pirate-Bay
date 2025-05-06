@@ -19,14 +19,16 @@ export const getSDK = async () => {
 }
 
 export const getSwapQuote = async (params: TGetSwapQuote) => {
+  if (!params) return null
+
   try {
     const squidInstance = await getSDK()
 
     const result = await squidInstance.getRoute(params)
 
-    console.log('Squid quote response:', result);
+    console.log('Squid quote response:', result)
 
-    return result;
+    return result
   } catch (error) {
     console.error('Squid getRoute error:', error)
 

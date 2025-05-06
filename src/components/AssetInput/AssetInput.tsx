@@ -63,6 +63,10 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
       correctedValue = "0" + filteredValue
     }
 
+    if (correctedValue === '0' ||  correctedValue === "") {
+      setTransferredAsset('0')
+    }
+
     setValue('assetAmount', correctedValue)
   };
 
@@ -70,7 +74,7 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
   const isErrorStyles = touchedFields.assetAmount && assetError && direction === 'from'
 
   const quoteParams = useMemo(() => {
-    if (!debouncedAmount || !fromSelectedAsset || !toSelectedAsset || !address || !shouldFetchQuote) return null
+    if (!shouldFetchQuote) return null
 
     return {
       fromChain: '42161',
@@ -87,8 +91,6 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
 
   const { data: quote, isLoading } = useSwapQuote(quoteParams)
 
-
-
   useEffect(() => {
     if (isLoading) setIsQuoteLoading(true)
       else setIsQuoteLoading(false)
@@ -96,26 +98,21 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
 
   useEffect(() => {
     if (quote) {
-      // Проверяем структуру ответа
       if (!quote.route || !quote.route.transactionRequest || !quote.route.transactionRequest.target) {
         console.error('Invalid quote structure:', quote);
         setAssetError('Failed to get valid exchange data');
         return;
       }
 
-      // Вычисляем readableAmount
-      const countReadableAmount = quote.route.estimate?.toToken?.decimals
+      const countReadableAmount = quote.route.estimate.toToken.decimals
         ? Number(quote.route.estimate.toAmountMin) / Math.pow(10, quote.route.estimate.toToken.decimals)
-        : 0;
+        : 0
 
-      setTransferredAsset(countReadableAmount.toString());
-      setAssetQuote(quote);
-      setAssetError('');
+      setTransferredAsset(countReadableAmount.toString())
+      setAssetQuote(quote)
+      setAssetError('')
     }
-  }, [quote, setAssetError, setAssetQuote, setTransferredAsset]);
-
-  // console.log('quote (quote, isLoading, error), assetQuote ===> ', quote, isLoading, error)
-  // console.log('assetQuote ===> ', assetQuote)
+  }, [quote, setAssetError, setAssetQuote, setTransferredAsset])
 
   return (
     <div className={styles.wrap} style={isErrorStyles ? {backgroundColor: '#FED2CD'} : {}}>

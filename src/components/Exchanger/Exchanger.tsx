@@ -9,7 +9,7 @@ import {toWei} from "../../utils/toWei.ts";
 import {useExecuteSwap} from "../../hooks/useExecuteSwap.ts";
 import {useApprove} from "../../hooks/useApprove.ts";
 import {useAllowance} from "../../hooks/useAllowance.ts";
-import {getSDK} from "../../services/squid.ts";
+import {executeSwap, getSDK} from "../../services/squid.ts";
 import {useTransactionStore} from "../../store/transactionStore.ts";
 import {TransactionInfo} from "../../models/Transactions.ts";
 
@@ -100,8 +100,6 @@ const Exchanger = () => {
     }
 
     try {
-      const squid = await getSDK()
-
       // Адаптируем walletClient под signer, ожидаемый SDK
       const signer = {
         sendTransaction: async (tx: any) => {
@@ -120,7 +118,7 @@ const Exchanger = () => {
         getAddress: async () => walletClient.account.address
       }
 
-      const result = await squid.executeRoute({
+      const result = await executeSwap({
         route: assetQuote.route,
         signer: signer
       })
