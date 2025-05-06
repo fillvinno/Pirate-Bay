@@ -41,7 +41,7 @@ const AssetInput: FC<Props> = ({selectedAsset, direction}) => {
   } = useAssetsStore()
 
   const assetValue = watch('assetAmount') || ''
-  const [debouncedAmount] = useDebounce(assetValue, 1000);
+  const [debouncedAmount] = useDebounce(assetValue, 600)
 
   const {address, isConnected} = useAccount()
 

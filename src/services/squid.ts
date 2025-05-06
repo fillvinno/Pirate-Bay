@@ -15,7 +15,7 @@ export const getSDK = async () => {
     });
     await squidInstance.init();
   }
-  return squidInstance;
+  return squidInstance
 }
 
 export const getSwapQuote = async (params: TGetSwapQuote) => {
