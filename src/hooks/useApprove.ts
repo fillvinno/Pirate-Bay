@@ -3,9 +3,9 @@ import { approveToken } from '../services/squid';
 import { Address } from 'viem';
 
 type ApproveParams = {
-  tokenAddress: Address;
-  spenderAddress: Address;
-  amount: bigint;
+  tokenAddress: Address
+  spenderAddress: Address
+  amount: bigint
 }
 
 export const useApprove = () => {
@@ -13,5 +13,5 @@ export const useApprove = () => {
     mutationFn: ({ tokenAddress, spenderAddress, amount }: ApproveParams) => {
       return approveToken(tokenAddress, spenderAddress, amount)
     },
-  });
-};
+  })
+}

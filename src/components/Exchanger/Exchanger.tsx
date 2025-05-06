@@ -3,13 +3,12 @@ import AssetSelector from "../AssetSelector/AssetSelector.tsx";
 import {useAssetsStore} from "../../store/assetsStore.ts";
 import {useEffect, useMemo, useState} from "react";
 import TransactionStatusModal from "../TransactionStatusModal/TransactionStatusModal.tsx";
-import {useAccount, useWalletClient} from "wagmi";
+import {useAccount, usePublicClient, useWalletClient} from "wagmi";
 import {Address} from "viem";
 import {toWei} from "../../utils/toWei.ts";
 import {useExecuteSwap} from "../../hooks/useExecuteSwap.ts";
 import {useApprove} from "../../hooks/useApprove.ts";
 import {useAllowance} from "../../hooks/useAllowance.ts";
-import {executeSwap, getSDK} from "../../services/squid.ts";
 import {useTransactionStore} from "../../store/transactionStore.ts";
 import {TransactionInfo} from "../../models/Transactions.ts";
 
@@ -31,6 +30,7 @@ const Exchanger = () => {
 
   const { isConnected, address } = useAccount()
   const { data: walletClient } = useWalletClient()
+  const publicClient = usePublicClient()
 
   function closeModal() {
     setIsOpen(false)
@@ -52,7 +52,7 @@ const Exchanger = () => {
     spenderAddress || undefined,
     !!assetQuote && !isNativeToken && !!spenderAddress
   )
-
+  console.log('allowance ===>', allowance)
   const approveMutation = useApprove()
   const swapMutation = useExecuteSwap()
 
@@ -100,41 +100,20 @@ const Exchanger = () => {
     }
 
     try {
-      // Адаптируем walletClient под signer, ожидаемый SDK
-      const signer = {
-        sendTransaction: async (tx: any) => {
-          const hash = await walletClient.sendTransaction({
-            account: walletClient.account.address,
-            ...tx
-          })
-          return { hash }
-        },
-        signMessage: async (message: Uint8Array | string) => {
-          return walletClient.signMessage({
-            account: walletClient.account.address,
-            message: typeof message === 'string' ? { raw: message } : message
-          })
-        },
-        getAddress: async () => walletClient.account.address
-      }
-
-      const result = await executeSwap({
+      await swapMutation.mutateAsync({
         route: assetQuote.route,
-        signer: signer
+        walletClient,
+        publicClient,
       })
 
-      const transaction = {
+      setTransaction({
         isSuccess: true,
         info: {
           transferredAmmount: transferedAsset,
           asset: toSelectedAsset!
         }
-      }
-
-      setTransaction(transaction)
+      })
       setIsOpen(true)
-
-      console.log('Transaction hash:', result);
     } catch (error) {
       console.error('Swap error:', error);
       setAssetError(
