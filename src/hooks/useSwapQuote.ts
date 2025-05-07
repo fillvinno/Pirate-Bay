@@ -7,12 +7,13 @@ export const useSwapQuote = (params: TGetSwapQuote | null) => {
     queryKey: ['swapQuote', params?.fromAmount, params?.fromToken, params?.toToken],
     queryFn: async () => {
       if (!params) return null
+
       return await getSwapQuote(params)
     },
     enabled: !!params,
     staleTime: 30000,
-    retry: 3,
-    retryDelay: 300,
+    retry: 4,
+    retryDelay: 1500,
     refetchOnMount: false,
     refetchOnWindowFocus: false
   });

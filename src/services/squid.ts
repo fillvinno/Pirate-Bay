@@ -5,16 +5,18 @@ import {readContract, writeContract} from "@wagmi/core";
 import {config} from "./wagmiConfig.ts";
 
 
+
 let squidInstance: Squid | null = null;
 
 export const getSDK = async () => {
-  if (!squidInstance) {
-    squidInstance = new Squid({
-      baseUrl: "https://v2.api.squidrouter.com",
-      integratorId: 'pirata-bay-4e58a721-fa5a-4b17-8c6b-01cfd7edaacc',
-    });
-    await squidInstance.init();
-  }
+  if (squidInstance) return squidInstance
+
+  squidInstance = new Squid({
+    baseUrl: "https://v2.api.squidrouter.com",
+    integratorId: 'pirata-bay-4e58a721-fa5a-4b17-8c6b-01cfd7edaacc',
+  });
+
+  await squidInstance.init()
   return squidInstance
 }
 
@@ -50,8 +52,8 @@ export const checkAllowance = async (
       ownerAddress as Address,
       spenderAddress as Address
     ],
-  });
-};
+  })
+}
 
 // Отправка approve
 export const approveToken = async (
@@ -67,8 +69,8 @@ export const approveToken = async (
       spenderAddress as Address,
       amount
     ],
-  });
-};
+  })
+}
 
 export const executeSwap = async (transactionRequest: any) => {
   const squidInstance = await getSDK()

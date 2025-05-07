@@ -11,6 +11,7 @@ import {useApprove} from "../../hooks/useApprove.ts";
 import {useAllowance} from "../../hooks/useAllowance.ts";
 import {useTransactionStore} from "../../store/transactionStore.ts";
 import {TransactionInfo} from "../../models/Transactions.ts";
+import {OnChainExecutionData} from "@0xsquid/squid-types";
 
 
 const Exchanger = () => {
@@ -37,10 +38,12 @@ const Exchanger = () => {
   }
 
   const spenderAddress = useMemo(() => {
-    return assetQuote?.route?.transactionRequest?.target || null;
+    const transactionRequest = assetQuote?.route?.transactionRequest;
+    if (transactionRequest && 'target' in transactionRequest) {
+      return (transactionRequest as OnChainExecutionData).target || null;
+    }
+    return null;
   }, [assetQuote]);
-
-  console.log('target ====>', assetQuote?.route?.transactionRequest?.target)
 
   const isNativeToken = fromSelectedAsset?.address === '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 
@@ -49,7 +52,7 @@ const Exchanger = () => {
       ? fromSelectedAsset.address as Address
       : undefined,
     address as Address | undefined,
-    spenderAddress || undefined,
+    spenderAddress as Address || undefined,
     !!assetQuote && !isNativeToken && !!spenderAddress
   )
   console.log('allowance ===>', allowance)
@@ -75,7 +78,7 @@ const Exchanger = () => {
       const amount = BigInt(toWei(transferedAsset, fromSelectedAsset.decimals))
       await approveMutation.mutateAsync({
         tokenAddress: fromSelectedAsset.address as Address,
-        spenderAddress,
+        spenderAddress: spenderAddress as Address,
         amount
       });
 
@@ -89,21 +92,26 @@ const Exchanger = () => {
 
   // Обработчик для swap
   const handleSwap = async () => {
-    if (!assetQuote?.route?.transactionRequest?.target) {
-      setAssetError('Contract address is missing');
+    const transactionRequest = assetQuote?.route?.transactionRequest
+    if (
+      !transactionRequest ||
+      !('target' in transactionRequest) ||
+      !transactionRequest.target
+    ) {
+      setAssetError('Contract address is missing')
       return;
     }
 
     if (!walletClient) {
-      setAssetError('Wallet not connected');
+      setAssetError('Wallet not connected')
       return;
     }
 
     try {
       await swapMutation.mutateAsync({
         route: assetQuote.route,
-        walletClient,
-        publicClient,
+        walletClient: walletClient!,
+        publicClient: publicClient!,
       })
 
       setTransaction({
